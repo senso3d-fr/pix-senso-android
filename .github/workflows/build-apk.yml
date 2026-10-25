@@ -28,11 +28,9 @@ jobs:
       - name: Installer Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Accepter les licences Android
-        run: yes | sdkmanager --licenses
-
       - name: Installer les composants Android
-        run: sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+        run: |
+          sdkmanager --verbose "platform-tools" "platforms;android-35" "build-tools;35.0.0"
 
       - name: Compiler l'APK
         run: gradle --no-daemon assembleDebug
