@@ -1,4 +1,4 @@
-<!doctype html>
+a<!doctype html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
@@ -1262,6 +1262,165 @@ body{background:white;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 </style>
 
+<style id="pix-senso-mobile-interface-v1">
+/* Interface smartphone uniquement : la fiche imprimée n'est pas modifiée. */
+@media screen and (max-width: 600px) {
+  html, body { width:100%; max-width:100%; overflow-x:hidden; }
+  body { font-size:16px; -webkit-text-size-adjust:100%; }
+  .app { width:100%; max-width:100%; margin:0; padding:10px; }
+  .top { border-radius:14px; padding:14px; gap:10px; align-items:center; }
+  .top h1 { font-size:20px; line-height:1.2; }
+  .top p { font-size:12px; line-height:1.4; margin-top:5px; }
+  .logo { width:64px; height:48px; flex:0 0 64px; }
+  .layout { display:flex; flex-direction:column; gap:12px; margin-top:12px; min-width:0; }
+  .controls, .preview { width:100%; min-width:0; }
+  .card { padding:14px; border-radius:14px; }
+  .controls h2 { font-size:16px; line-height:1.3; margin:18px 0 10px; }
+  .controls h2:first-child { margin-top:0; }
+  label { font-size:13px; line-height:1.3; margin:12px 0 6px; }
+  input, select, textarea { width:100%; min-height:44px; padding:11px 12px; font-size:16px; border-radius:10px; }
+  .palette { grid-template-columns:repeat(5,minmax(0,1fr)); gap:6px; }
+  .color { min-width:0; padding:8px 2px; font-size:10px; border-radius:9px; }
+  .swatch { width:25px; height:25px; }
+  .tools { display:flex; flex-wrap:wrap; gap:8px; }
+  .tools .btn { flex:1 1 calc(50% - 8px); min-height:44px; padding:11px 8px; font-size:14px; white-space:normal; }
+  .pdf-tools { display:flex; flex-direction:column; align-items:stretch; }
+  .pdf-tools label, .pdf-tools select, .pdf-tools button { width:100% !important; }
+  .random-options { padding:11px !important; border-radius:11px !important; }
+  .random-options strong { font-size:13px !important; line-height:1.4; }
+  .gcode-dropdown summary { min-height:44px; display:flex; align-items:center; padding:10px; }
+  .gcode-dropdown-options label { display:flex; align-items:center; gap:8px; min-height:40px; font-size:14px; }
+  .gcode-dropdown-options input[type="checkbox"] { width:20px; min-height:20px; flex:0 0 20px; }
+  .stockrow { grid-template-columns:18px minmax(0,1fr) 42px; gap:7px; font-size:12px; }
+  .notice { font-size:12px; line-height:1.45; }
+
+  /* Aperçu écran fluide : les dimensions fixes en millimètres ne s'appliquent qu'à l'impression. */
+  .preview { display:block; overflow:hidden; }
+  .sheet { width:100% !important; max-width:100% !important; height:auto; min-width:0; padding:14px !important; border-radius:12px; aspect-ratio:auto; overflow:hidden; }
+  .sheetHead { min-height:58px; height:auto; padding:10px 12px; gap:8px; }
+  .sheetHead strong { font-size:17px; }
+  .sheetHead small { font-size:10px; line-height:1.3; }
+  .sheetLogo { width:54px; height:38px; flex:0 0 54px; }
+  .sheetTitle { margin:16px 0 12px; }
+  .sheetTitle h3 { font-size:19px; line-height:1.25; overflow-wrap:anywhere; }
+  .sheetTitle p { font-size:12px; line-height:1.4; }
+  .model { padding:10px; border-radius:10px; min-width:0; }
+  .modelLabel { font-size:10px; line-height:1.4; margin-bottom:12px; }
+  .coord-grid-wrap {
+    display:grid !important;
+    grid-template-columns:18px minmax(0,1fr) !important;
+    grid-template-rows:18px auto !important;
+    width:100% !important; height:auto !important; max-width:100% !important;
+    margin:0 auto !important; box-sizing:border-box !important; gap:0 !important;
+  }
+  .coord-corner { grid-column:1 !important; grid-row:1 !important; }
+  .coord-top {
+    grid-column:2 !important; grid-row:1 !important;
+    display:grid !important; grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+    width:100% !important; height:18px !important; column-gap:0 !important;
+    font-size:12px !important; align-items:center !important; justify-items:center !important;
+  }
+  .coord-side {
+    grid-column:1 !important; grid-row:2 !important;
+    display:grid !important; grid-template-rows:repeat(5,minmax(0,1fr)) !important;
+    width:18px !important; height:auto !important; row-gap:0 !important;
+    font-size:12px !important; align-items:center !important; justify-items:center !important;
+  }
+  .coord-grid-wrap .model-grid-real, .model-grid-real {
+    grid-column:2 !important; grid-row:2 !important;
+    display:grid !important; width:100% !important; height:auto !important;
+    aspect-ratio:1 / 1 !important; min-width:0 !important; max-width:100% !important;
+    grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+    grid-template-rows:repeat(5,minmax(0,1fr)) !important;
+    gap:clamp(2px,1vw,5px) !important; margin:0 !important; padding:0 !important;
+    border:0 !important; box-sizing:border-box !important; background:transparent !important;
+  }
+  .coord-grid-wrap .model-grid-real .cell, .model-grid-real .cell {
+    width:100% !important; height:auto !important; min-width:0 !important;
+    min-height:0 !important; max-width:none !important; max-height:none !important;
+    aspect-ratio:1 / 1 !important; border-radius:4px !important; border:0 !important;
+  }
+  .legend { font-size:11px; line-height:1.4; gap:8px; }
+  .dot { width:12px; height:12px; flex:0 0 12px; }
+  .objective { font-size:12px; line-height:1.45; padding:11px; margin-top:12px; }
+  .footer { font-size:9px; gap:8px; line-height:1.4; }
+  #shapeKeySheet, #objectKeySheet, #solutionSheet { max-width:100%; }
+}
+@media screen and (min-width: 601px) and (max-width: 800px) {
+  .app { padding:16px; }
+  .layout { grid-template-columns:minmax(0,1fr); }
+  .controls, .preview { min-width:0; }
+}
+</style>
+
+
+<style id="pix-senso-mobile-ux-v2">
+/* Interface tactile : règles limitées à l'écran, jamais à l'impression */
+@media screen and (max-width: 640px) {
+  html { -webkit-text-size-adjust: 100%; }
+  body { background:#f3f6f9; font-size:16px; overflow-x:hidden; }
+  .app { width:100%; max-width:none; margin:0; padding:0 0 28px; }
+  .top { border-radius:0 0 18px 18px; padding:15px 16px; gap:12px; min-height:76px; }
+  .top h1 { font-size:20px; line-height:1.2; margin:0 0 5px; }
+  .top p { font-size:12px; line-height:1.4; }
+  .logo { width:60px; height:48px; flex:0 0 60px; }
+  .layout { display:flex; flex-direction:column; gap:14px; margin:12px 0 0; }
+  .preview { order:0; width:100%; min-width:0; padding:0 10px; }
+  .controls { order:1; width:100%; min-width:0; padding:0 10px; background:transparent; box-shadow:none; border-radius:0; }
+  /* Le modèle à toucher est placé avant les réglages. */
+  .sheet { width:100%; max-width:520px; aspect-ratio:auto; min-height:0; padding:14px; border-radius:16px; overflow:hidden; }
+  .sheetHead { height:auto; min-height:54px; padding:10px 12px; border-radius:10px; }
+  .sheetHead strong { font-size:16px; }
+  .sheetHead small { font-size:10px; line-height:1.3; }
+  .sheetLogo { width:52px; height:34px; }
+  .sheetTitle { margin:13px 0 10px; }
+  .sheetTitle h3 { font-size:18px; line-height:1.2; }
+  .sheetTitle p { font-size:11px; line-height:1.4; }
+  .model { padding:12px 8px; border-radius:11px; }
+  .modelLabel { font-size:10px; margin-bottom:10px; padding-bottom:7px; }
+  .coord-grid-wrap { width:min(100%, 340px) !important; height:auto !important; aspect-ratio:1 / 1; display:grid !important; grid-template-columns:18px minmax(0,1fr) !important; grid-template-rows:18px minmax(0,1fr) !important; gap:0 !important; margin:0 auto !important; box-sizing:border-box !important; }
+  .coord-top { grid-column:2 !important; grid-row:1 !important; width:100% !important; height:18px !important; display:grid !important; grid-template-columns:repeat(5,minmax(0,1fr)) !important; column-gap:clamp(2px,1vw,5px) !important; font-size:11px !important; }
+  .coord-side { grid-column:1 !important; grid-row:2 !important; width:18px !important; height:100% !important; display:grid !important; grid-template-rows:repeat(5,minmax(0,1fr)) !important; row-gap:clamp(2px,1vw,5px) !important; font-size:11px !important; }
+  .coord-corner { grid-column:1 !important; grid-row:1 !important; }
+  .coord-grid-wrap .model-grid-real, .model-grid-real { grid-column:2 !important; grid-row:2 !important; width:100% !important; height:auto !important; aspect-ratio:1 / 1 !important; display:grid !important; grid-template-columns:repeat(5,minmax(0,1fr)) !important; grid-template-rows:repeat(5,minmax(0,1fr)) !important; gap:clamp(2px,1vw,5px) !important; margin:0 !important; padding:0 !important; border:0 !important; background:transparent !important; box-sizing:border-box !important; }
+  .coord-grid-wrap .model-grid-real .cell, .model-grid-real .cell { width:100% !important; height:auto !important; min-width:0 !important; min-height:0 !important; max-width:none !important; max-height:none !important; aspect-ratio:1 / 1 !important; border:1px solid #d5dce3 !important; border-radius:5px !important; box-sizing:border-box !important; }
+  .legend { font-size:11px; line-height:1.4; gap:8px; margin-top:12px; }
+  .dot { width:12px; height:12px; flex:0 0 12px; }
+  .objective { font-size:12px; line-height:1.45; padding:11px; margin-top:12px; }
+  .footer { font-size:9px; gap:8px; line-height:1.4; }
+  .controls details.mobile-section { display:block; background:#fff; border:1px solid #e0e7ee; border-radius:14px; margin:0 0 10px; overflow:hidden; box-shadow:0 2px 10px #25364A0a; }
+  .controls details.mobile-section > summary { list-style:none; display:flex; align-items:center; gap:10px; min-height:54px; padding:14px 15px; font-size:15px; line-height:1.25; font-weight:700; color:var(--navy); cursor:pointer; touch-action:manipulation; }
+  .controls details.mobile-section > summary::-webkit-details-marker { display:none; }
+  .controls details.mobile-section > summary::after { content:'＋'; margin-left:auto; color:var(--blue); font-size:22px; line-height:1; }
+  .controls details.mobile-section[open] > summary::after { content:'−'; }
+  .controls .mobile-section-content { padding:0 14px 15px; }
+  .controls .mobile-section-content > h2 { display:none; }
+  .controls label { font-size:13px !important; line-height:1.35; margin:14px 0 7px !important; }
+  .controls input:not([type=checkbox]):not([type=radio]), .controls select { min-height:46px; padding:12px; font-size:16px; border-radius:10px; }
+  .palette { grid-template-columns:repeat(5,minmax(0,1fr)); gap:6px; }
+  .color { min-height:72px; padding:9px 3px; font-size:10px; border-radius:10px; touch-action:manipulation; }
+  .swatch { width:30px; height:30px; }
+  .tools { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin-top:12px; }
+  .tools .btn { min-height:46px; padding:11px 8px; font-size:13px; line-height:1.25; touch-action:manipulation; }
+  .tools.pdf-tools { display:flex; flex-direction:column; align-items:stretch; }
+  .tools.pdf-tools label { margin-top:4px !important; }
+  .tools.pdf-tools .btn { width:100%; min-height:50px; font-size:15px; }
+  .random-options { padding:12px !important; border-radius:10px; }
+  .random-options strong { font-size:13px !important; line-height:1.35; }
+  .gcode-dropdown summary { min-height:44px; padding:12px; }
+  .stockrow { grid-template-columns:18px minmax(0,1fr) 42px; font-size:12px; }
+  .notice { font-size:12px; line-height:1.45; }
+  /* Les pages annexes ne doivent pas élargir l'écran en mode mobile. */
+  #shapeKeySheet, #objectKeySheet, #solutionSheet { max-width:100%; }
+  .solution-layout { grid-template-columns:1fr !important; }
+}
+@media screen and (min-width:641px) and (max-width:800px) {
+  .app { padding:16px; }
+  .layout { grid-template-columns:minmax(0,1fr); }
+  .controls, .preview { min-width:0; }
+}
+</style>
+
 </head>
 <body>
 <div class="app">
@@ -1955,6 +2114,48 @@ body.gcode-theme .object-key-symbol{width:10mm;height:10mm;font-size:22pt}
   #shapeKeySheet .shape-key-item .key-element-label { display:none!important; }
 }
 </style>
+
+
+<script id="pix-senso-mobile-sections">
+(function(){
+  const controls=document.querySelector('.controls');
+  if(!controls) return;
+  const headings=Array.from(controls.querySelectorAll(':scope > h2'));
+  headings.forEach((heading,index)=>{
+    const details=document.createElement('details');
+    details.className='mobile-section';
+    details.open = index===0 || !window.matchMedia('(max-width: 640px)').matches;
+    const summary=document.createElement('summary');
+    summary.textContent=heading.textContent.trim();
+    const content=document.createElement('div');
+    content.className='mobile-section-content';
+    controls.insertBefore(details,heading);
+    details.appendChild(summary);
+    details.appendChild(content);
+    let node=heading;
+    while(node){
+      const next=node.nextSibling;
+      if(node!==heading && node.nodeType===1 && node.tagName==='H2') break;
+      content.appendChild(node);
+      node=next;
+    }
+  });
+  const mq=window.matchMedia('(max-width: 640px)');
+  const syncSections=()=>{
+    const sections=Array.from(controls.querySelectorAll(':scope > details.mobile-section'));
+    sections.forEach((section,index)=>{
+      if(!mq.matches) section.open=true;
+      else if(index===0 && !section.dataset.userToggled) section.open=true;
+      else if(index>0 && !section.dataset.userToggled) section.open=false;
+    });
+  };
+  controls.querySelectorAll('details.mobile-section').forEach(section=>{
+    section.addEventListener('toggle',()=>{section.dataset.userToggled='1';});
+  });
+  mq.addEventListener ? mq.addEventListener('change',syncSections) : mq.addListener(syncSections);
+  syncSections();
+})();
+</script>
 
 </body>
 </html>
