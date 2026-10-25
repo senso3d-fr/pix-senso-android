@@ -3,6 +3,8 @@
     <application
         android:allowBackup="false"
         android:label="Pix-Senso"
+        android:icon="@drawable/ic_pix_senso"
+android:roundIcon="@drawable/ic_pix_senso"
         android:theme="@android:style/Theme.Material.Light.NoActionBar">
         <activity android:name=".MainActivity" android:exported="true">
             <intent-filter>
