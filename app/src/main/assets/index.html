@@ -1679,6 +1679,8 @@ function printSheet(){
     const objectPage = document.getElementById("objectKeySheet");
     document.body.classList.remove("gcode-forme");
     document.body.classList.toggle("gcode-theme", hasGcode);
+    document.body.classList.toggle("pix-print-simple", !hasGcode);
+    document.body.classList.toggle("pix-print-with-gcode", hasGcode);
     if (shapePage) {
       shapePage.style.setProperty("display", "none", "important");
       shapePage.style.setProperty("visibility", "hidden", "important");
@@ -2190,6 +2192,35 @@ body.gcode-theme .object-key-symbol{width:10mm;height:10mm;font-size:22pt}
   syncSections();
 })();
 </script>
+
+
+<style id="pix-senso-print-mode-isolation">
+@media print {
+  /* Sans G-Code : n'imprimer que la fiche modèle, sans commandes ni pages annexes. */
+  body.pix-print-simple .app > *:not(.layout) { display: none !important; }
+  body.pix-print-simple .layout > *:not(.preview) { display: none !important; }
+  body.pix-print-simple .preview > *:not(#sheet) { display: none !important; }
+  body.pix-print-simple #sheet {
+    display: block !important;
+    width: 200mm !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 auto !important;
+    break-before: auto !important;
+    page-break-before: auto !important;
+    break-after: auto !important;
+    page-break-after: auto !important;
+    overflow: visible !important;
+  }
+  body.pix-print-simple #objectKeySheet,
+  body.pix-print-simple #shapeKeySheet,
+  body.pix-print-simple #solutionSheet,
+  body.pix-print-simple #cubeSummary {
+    display: none !important;
+  }
+}
+</style>
 
 </body>
 </html>
