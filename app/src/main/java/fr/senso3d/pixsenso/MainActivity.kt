@@ -45,6 +45,18 @@ class MainActivity : Activity() {
         webView.loadUrl("file:///android_asset/index.html")
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (::webView.isInitialized) {
+            webView.post {
+                webView.evaluateJavascript(
+                    "if (window.__pixSensoRestorePrintState) window.__pixSensoRestorePrintState();",
+                    null
+                )
+            }
+        }
+    }
+
     @Deprecated("Deprecated in Android API")
     override fun onBackPressed() {
         if (webView.canGoBack()) webView.goBack() else super.onBackPressed()
