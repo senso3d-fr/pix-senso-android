@@ -1,7 +1,10 @@
 package fr.senso3d.pixsenso
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
+import android.print.PrintManager
+import android.webkit.JavascriptInterface
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -9,6 +12,20 @@ import android.view.ViewGroup
 
 class MainActivity : Activity() {
     private lateinit var webView: WebView
+
+    private inner class PrintBridge {
+        @JavascriptInterface
+        fun print() {
+            runOnUiThread {
+                val printManager = getSystemService(Context.PRINT_SERVICE) as PrintManager
+                printManager.print(
+                    "Pix-Senso",
+                    webView.createPrintDocumentAdapter("Pix-Senso"),
+                    null
+                )
+            }
+        }
+    }
 
     @Suppress("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +40,7 @@ class MainActivity : Activity() {
         webView.settings.allowFileAccess = true
         webView.webChromeClient = WebChromeClient()
         webView.webViewClient = WebViewClient()
+        webView.addJavascriptInterface(PrintBridge(), "PixSensoAndroid")
         setContentView(webView)
         webView.loadUrl("file:///android_asset/index.html")
     }
