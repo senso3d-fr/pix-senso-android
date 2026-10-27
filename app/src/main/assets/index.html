@@ -1671,7 +1671,11 @@ function printSheet(){
     const summary=document.getElementById('cubeSummary');
     if(summary) summary.style.setProperty('display',hasGcode?'none':'block','important');
   } catch (err) { console.error("Préparation de l'impression :", err); }
-  window.print();
+  if (window.PixSensoAndroid && typeof window.PixSensoAndroid.print === "function") {
+    window.PixSensoAndroid.print();
+  } else {
+    window.print();
+  }
 }
 
 document.getElementById("erase").onclick=()=>{eraser=!eraser;document.getElementById("erase").textContent=eraser?"Gomme activée":"Gomme"};
