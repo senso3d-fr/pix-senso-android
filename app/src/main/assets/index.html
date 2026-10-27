@@ -1421,6 +1421,36 @@ body{background:white;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 </style>
 
+<style>
+/* Fix pagination Android WebView: avoid forced full-page body height and trailing blank page */
+@media print {
+  html, body {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  .app, .layout, .preview {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  .sheet {
+    break-after: auto !important;
+    page-break-after: auto !important;
+  }
+  #shapeKeySheet[style*="display: none"],
+  #objectKeySheet[style*="display: none"],
+  #solutionSheet[style*="display: none"] {
+    display: none !important;
+    break-before: auto !important;
+    page-break-before: auto !important;
+    break-after: auto !important;
+    page-break-after: auto !important;
+  }
+}
+</style>
 </head>
 <body>
 <div class="app">
