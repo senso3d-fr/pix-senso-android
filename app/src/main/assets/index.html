@@ -2209,3 +2209,26 @@ body.gcode-theme .object-key-symbol{width:10mm;height:10mm;font-size:22pt}
   body.legend-square-only #shapeKeySheet .key-color-name { display:none!important; }
 }
 </style>
+
+
+<style id="pix-senso-android-pagination-fix-v2">
+@media print {
+  html, body {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  #printSheet {
+    break-after: page !important;
+    page-break-after: always !important;
+  }
+  #objectKeySheet, #solutionSheet {
+    break-before: auto !important;
+    page-break-before: auto !important;
+    break-after: page !important;
+    page-break-after: always !important;
+  }
+  #shapeKeySheet { display: none !important; }
+}
+</style>
