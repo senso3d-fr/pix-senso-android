@@ -1668,28 +1668,6 @@ function prepareSolutionPage(){
   document.getElementById('solutionTotal').innerHTML=`<span>Total</span><strong>${total} cube${total>1?'s':''}</strong>`;
 }
 function printSheet(){
-  if (window.__pixSensoPrintState) window.__pixSensoRestorePrintState();
-  const targets = ["sheet", "shapeKeySheet", "objectKeySheet", "solutionSheet", "cubeSummary"];
-  const snapshot = {
-    bodyClass: document.body.className,
-    styles: Object.fromEntries(targets.map(id => {
-      const el = document.getElementById(id);
-      return [id, el ? el.getAttribute("style") : null];
-    }))
-  };
-  window.__pixSensoPrintState = snapshot;
-  window.__pixSensoRestorePrintState = function(){
-    const saved = window.__pixSensoPrintState;
-    if (!saved) return;
-    document.body.className = saved.bodyClass;
-    Object.entries(saved.styles).forEach(([id, style]) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      if (style === null) el.removeAttribute("style");
-      else el.setAttribute("style", style);
-    });
-    window.__pixSensoPrintState = null;
-  };
   try {
     const mode = document.getElementById("printColorKeyMode")?.value || "square";
     document.body.classList.toggle("legend-name-only", mode === "name");
@@ -1713,30 +1691,24 @@ function printSheet(){
       objectPage.style.setProperty("break-before", hasGcode ? "page" : "auto", "important");
       objectPage.style.setProperty("page-break-before", hasGcode ? "always" : "auto", "important");
     }
-    const solutionPage = document.getElementById("solutionSheet");
-    if (solutionPage) {
+    const solutionPage=document.getElementById('solutionSheet');
+    if(solutionPage){
       prepareSolutionPage();
-      solutionPage.style.setProperty("display", hasGcode ? "block" : "none", "important");
-      solutionPage.style.setProperty("visibility", hasGcode ? "visible" : "hidden", "important");
-      solutionPage.style.setProperty("break-before", hasGcode ? "page" : "auto", "important");
-      solutionPage.style.setProperty("page-break-before", hasGcode ? "always" : "auto", "important");
+      solutionPage.style.setProperty('display',hasGcode?'block':'none','important');
+      solutionPage.style.setProperty('visibility',hasGcode?'visible':'hidden','important');
+      solutionPage.style.setProperty('break-before',hasGcode?'page':'auto','important');
+      solutionPage.style.setProperty('page-break-before',hasGcode?'always':'auto','important');
     }
-    const summary = document.getElementById("cubeSummary");
-    if (summary) summary.style.setProperty("display", "none", "important");
-  } catch (err) {
-    console.error("Préparation de l'impression :", err);
-    window.__pixSensoRestorePrintState();
-    return;
-  }
+    // Le mode classique garde les quantités sous la légende en page 2.
+    const summary=document.getElementById('cubeSummary');
+    if(summary) summary.style.setProperty('display',hasGcode?'none':'block','important');
+  } catch (err) { console.error("Préparation de l'impression :", err); }
   if (window.PixSensoAndroid && typeof window.PixSensoAndroid.print === "function") {
     window.PixSensoAndroid.print();
   } else {
     window.print();
   }
 }
-window.addEventListener("afterprint", () => {
-  if (window.__pixSensoRestorePrintState) window.__pixSensoRestorePrintState();
-});
 
 document.getElementById("erase").onclick=()=>{eraser=!eraser;document.getElementById("erase").textContent=eraser?"Gomme activée":"Gomme"};
 document.getElementById("clear").onclick=()=>{cells=Array(25).fill("vide");render()};
